@@ -1,0 +1,13 @@
+Django==1.8
+argparse==1.2.1
+django-bootstrap-form==3.2.1
+django-bootstrap3==7.0.1
+djangorestframework==3.4.4
+geopy==1.11.0
+googlemaps==2.4.4
+npm==0.1.1
+optional-django==0.1.0
+requests==2.10.0
+simplejson==3.8.2
+wsgiref==0.1.2
+xmljson==0.1.6
