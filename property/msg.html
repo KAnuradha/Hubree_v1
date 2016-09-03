@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>msg</title>
+</head>
+<body>
+<form action="/save/" method="POST">{% csrf_token %}
+name: <input type="text" name="name"><br>
+msg_from: <input type="text" name="msg_from"><br>
+address: <input type="text" name="address"><br>
+subject: <input type="text" name="from_subject"><br>
+subject: <input type="text" name="from_subject"><br>
+datetime: <input type="datetime" name="datetime"><br>
+<input type="submit" name="save">
+</form>
+</body>
+</html>

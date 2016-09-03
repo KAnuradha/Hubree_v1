@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Coosta</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css?family=Asap:400,700" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet"/>
+    <!-- Custom CSS -->
+    <link href="../static/css/logo-nav.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span><img src="../static/img/menu_icon.png" alt=""/></span>
+              </button>
+              <a class="navbar-brand" href="#">
+                <img src="../static/../static/img/logo.png" class="img-resposive" alt="Coosta" title="Coosta"/>
+              </a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                             <span class="user"><img class="img-circle" src="../static/img/user_icon.png" alt=""></span> &nbsp;Hey {{name}} &nbsp;
+                             <span class="fa fa-caret-down text-right"></span></a>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#"> Search Properties &nbsp;<i class="fa fa-angle-right"></i> </a></li>
+                            <li><a href="#"> Statistics</a></li>
+                            <li><a href="#"> Shortlisted Properties</a></li>
+                            <li><a href="#"> My Properties </a></li>
+                            <li><a href="#"> Profile Settings</a></li>
+                            <li><a href="#"> Account settings </a></li>
+                            <li><a href="#"> Logout </a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+	<br/>
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row">
+        	<div class="col-md-7 col-sm-7 col-xs-9">
+            	<div class="float_l mart20"><a href="Javascript:void(0);">
+                <!-- <span class="fa fa-angle-left fa-2x"></span></a></div> -->
+                <!-- <div class="float_l marl10 mart25"><h5>Back to Dashboard</h5></div> -->
+                <div class="clearfix"></div>
+            </div>
+            <div class="col-md-5 col-sm-5 col-xs-3 mart15">
+                
+            </div>
+            <div class="clearfix"></div>
+            
+        </div>
+    </div>
+    <!-- /.container -->
+    
+    <div class="container">
+    	
+        <div class="row">
+        	<div class="col-md-12">
+            	<br/>
+        		<h3>My Properties</h3>
+                <br/>
+                <form action="/main/" method="POST">{% csrf_token %}
+                <input type="hidden" name="name" value={{name}}>
+                <button type="submit" class="btn btn-sample_b btn-lg"><span class="fa fa-plus"></span> &nbsp; List a property</button>
+                </form>
+                <br/><br/>
+            </div>
+        	<div class="clearfix"></div>
+        </div>
+        <div class="row">    
+            {% if len_p > 0 %}
+                {% for i in propert %} 
+                <div class="col-md-6 marb15">
+                    <div class="people-cards">
+                    <div class="profile-image" style="float:left;">
+                    <img src="../static/img/buliding_img.jpg" class="img-responsive" />
+                    </div>
+                        <div class="profile-info">
+                        <h3>{{i.property_title}}
+                            <div class="dropdown pull-right">
+                            <span class="dropdown-toggle" type="button" id="menu1" data-toggle="dropdown"><span class="fa fa-gear gear_icon"></span></span>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">View Listing</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Edit Listing</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Delete</a></li>
+                            </ul>
+                            </div>
+                        </h3>
+                        <h4>$205,000</h4>
+                        <h6>#{{ i.address }}{{ i.city }}{{ i.state }}<br>{{ i.zip_code }}</h6>
+
+                            <table class="table table-bordered" style="width:280px; margin-bottom:0px;">
+                            <tr>
+                                    <th>HOME TYPE</th>
+                                    <th>BEDS</th>
+                                    <th>BATHS</th>
+                                    <th>PROPERTY SIZE</th>
+                                </tr>
+                                <tr>
+                                    <td>{{ i.property_type }}</td>
+                                    <td>{{ i.beds }}</td>
+                                    <td>{{ i.baths }}</td>
+                                    <td>{{ i.property_size }}</td>
+                                </tr>
+                                <tr>
+                                    <th>FLOORS</th>
+                                    <th>ROOF</th>
+                                    <th>BASEMENT</th>
+                                    <th>YEAR BUILT
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td>{{ i.fllors }}</td>
+                                    <td>{{ i.roof }}</td>
+                                    <td>{{ i.besment }}</td>
+                                    <td>{{ i.year_built }}</td>
+                                </tr>
+                            </tbody>
+                            </table>
+                        </div>
+                       
+                        
+                    <div class="clearfix"></div>
+                    </div>
+                </div>
+                {% endfor %}
+                <div class="text-center marb15">
+            <button class="btn btn-sample btn-lg" type="button">View More</button>
+        </div>
+             
+            {% else %}
+                <div class="col-md-12">
+                    <br/>
+                    <h4 align="center">You can add your properties here</h4>
+                    <br/>
+                </div>
+            {% endif %}    
+        </div>
+        
+        <div class="row">
+        	<div class="col-md-12">
+              <h4>Messages <span class="fnt_14">{{ len_m }} New Messages</span></h4>
+              {% if len_m > 0 %}
+              <div class="people-cards">
+                <div class="table-responsive mart20">          
+                <table class="table inbox">
+                    <tbody>
+                        {%for i in message %}
+                            <tr>
+                            <td width="8%" valign="middle" align="left"><img title="" alt="" class="img-responsive img-circle cir_bor" src="../static/img/user_img.jpg"></td>
+                            <td width="16%" valign="middle" align="left"><div class="act_gre"></div><h6>{{ i.msg_from }}</h6> <p>{{ i.address }}</p></td>
+                            <td width="66%" valign="middle" align="left">{{ i.to_subject}}</td>
+                            <td width="10%" valign="middle" align="left">
+                                    <div class="dropdown pull-right">
+                                    <span data-toggle="dropdown" id="menu1" type="button" class="dropdown-toggle"><b>{{ i.date_time }}<span class="fa fa-angle-down"></span></b></span>
+                                    <ul aria-labelledby="menu1" role="menu" class="dropdown-menu">
+                                    <li role="presentation"><a href="#" tabindex="-1" role="menuitem">Mark</a></li>
+                                    <li role="presentation"><a href="#" tabindex="-1" role="menuitem">Unread</a></li>
+                                    <li role="presentation"><a href="#" tabindex="-1" role="menuitem">Delete</a></li>
+                                    <li role="presentation"><a href="#" tabindex="-1" role="menuitem">Report User</a></li>
+                                    <li role="presentation"><a href="#" tabindex="-1" role="menuitem">Block	 User</a></li>
+                                    </ul>
+                                    </div>
+                            </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+              </div>
+            </div>
+				<div class="text-center marb15">
+                    <button class="btn btn-sample btn-lg" type="button">View All Messages</button>
+                </div>
+              {% else %}
+                    <div class="col-md-12">
+                        <br/>
+                        <h4 align="center">still you did not start messaging</h4>
+                        <br/>
+                    </div>
+              {% endif %}
+              </div>
+
+            <div class="clearfix"></div>
+        </div>
+        
+        <div class="row">
+        	<div class="col-md-12">
+            	<br>
+        		<h3>Shortlisted Properties <span class="fnt_14">{{len_s}} Property (s)</small></h3>
+                <br>
+                <button class="btn btn-sample_b btn-lg" type="button"><span class="fa fa-plus"></span> &nbsp; List a property</button>
+                <br><br>
+            </div>
+        	<div class="clearfix"></div>
+        </div>
+        
+        <div class="row">  
+        {% if len_s > 0 %}
+            {% for i in s_propert %}  
+                <div class="col-md-6 marb15">
+                    <div class="people-cards">
+                    <div class="profile-image" style="float:left;">
+                    <img src="../static/img/buliding_img.jpg" class="img-responsive" />
+                    </div>
+                        <div class="profile-info">
+                        <h3>Property Title 
+                            <div class="dropdown pull-right">
+                            <span class="dropdown-toggle" type="button" id="menu1" data-toggle="dropdown"><span class="fa fa-heart gear_icon"></span></span>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">View Listing</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Edit Listing</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Delete</a></li>
+                            </ul>
+                            </div>
+                        </h3>
+                        <h4>$205,000</h4>
+                        <h6># 105, Wilson Road, Cloud Lake ...</h6>
+
+                            <table class="table table-bordered" style="width:280px; margin-bottom:0px;">
+                            <tr>
+                                    <th>HOME TYPE</th>
+                                    <th>BEDS</th>
+                                    <th>BATHS</th>
+                                    <th>PROPERTY SIZE</th>
+                                </tr>
+                                <tr>
+                                    <td>Villa</td>
+                                    <td>{{ i.beds }}</td>
+                                    <td>{{ i.baths }}</td>
+                                    <td>{{ i.property_size }}</td>
+                                </tr>
+                                <tr>
+                                    <th>FLOORS</th>
+                                    <th>ROOF</th>
+                                    <th>BASEMENT</th>
+                                    <th>YEAR BUILT
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>2</td>
+                                    <td>2</td>
+                                    <td>1865</td>
+                                </tr>
+                            </table>
+                        </div>       
+                <div class="clearfix"></div>
+                </div>
+            {% endfor %}
+            <div class="clearfix"></div>
+        </div> 
+        <div class="text-center marb15">
+        	<button class="btn btn-sample btn-lg" type="button">View More</button>
+        </div>
+        {% else %}
+            <div class="col-md-12">
+                <br/>
+                <h4 align="center">You can add your shortlisted properties here</h4>
+                <br/>
+            </div>
+        {% endif %}
+            <div>&nbsp;</div>
+            
+            <div class="clearfix"></div>
+            
+            
+        </div>
+
+    </div>
+    <br/><br/>
+    
+    
+    <div class="container-fluid footer_bg">
+    	<div class="row">
+        	<div align="center"><img src="../static/img/f_logo.png"></div>
+            <br/>
+            <div align="center"><a href="#" class="con_siz"><span class="fa fa-facebook"></span></a> &nbsp; <a href="#" class="con_siz"><span class="fa fa-google-plus"></span></a> &nbsp; <a href="#" class="con_siz"><span class="fa fa-twitter"></span></a> &nbsp; <a href="#" class="con_siz"><span class="fa fa-linkedin"></span></a></div>
+            
+            <br/>
+            <div align="center"><a href="#" class="fnt_14">About Us</a> &nbsp; <a href="#" class="fnt_14">How It Works</a> &nbsp; <a href="#" class="fnt_14">Help & FAQ</a> &nbsp; <a href="#" class="fnt_14">Contact</a></div>
+     	 </div>
+         <br/><br/>
+         <div class="container">
+         <div class="row op_txt">
+         	<div class="col-md-6">2016 Copyrights Reserved.</div>
+            <div class="col-md-6 text-right"><a href="#" class="fnt_14">Terms Of Use</a> &nbsp; <a href="#" class="fnt_14">Privacy Policy</a></div>
+            <div class="clearfix"></div>
+         </div>
+         </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+    $('.btn-toggle').click(function() {
+    $(this).find('.btn').toggleClass('active');  
+    
+    if ($(this).find('.btn-sample').size()>0) {
+    	$(this).find('.btn').toggleClass('btn-sample');
+    }
+    
+    $(this).find('.btn').toggleClass('btn-default');
+       
+});
+
+$('form').submit(function(){
+	alert($(this["options"]).val());
+    return false;
+});
+    </script>
+
+</body>
+
+</html>
